@@ -1,10 +1,10 @@
-#include<bits/stdc++.h>
 #include <string>
 #include <sstream>
 #include <vector>
+#include <iostream>
 using namespace std;
 
-//string IntToString (int a);
+int iterationCounter = 0;
 
 bool isSum(int sum, vector <int> vect);
 
@@ -29,13 +29,14 @@ void printSubset(int arr[], int n, int j, vector <int> vect, int sum)
         vector <int> vect2;
         vect2 = vect;
         vect2.push_back(arr[i]);
+        iterationCounter++;
         printSubset(arr,n,i,vect2, sum);
     }
 }
 
 int main()
 {
-	int arr[] = { -4, -3, -2, -1, 0 ,1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	int arr[] = { -4, -3, -2, -1, 0 ,1, 2, 3, 4, 5, 6, 7, 8};
 	int n = sizeof(arr)/sizeof(arr[0]);
 	string inputsum;
 	cout<<"Input sum: ";
@@ -55,6 +56,9 @@ int main()
         vect.push_back(arr[i]);
 	    printSubset(arr, n,i,vect, sum);
     }
+
+    printf("Total number of iterations: %d", iterationCounter);
+
 	return 0;
 }
 
@@ -62,9 +66,9 @@ bool isSum(int sum, vector <int> vect){
 
     int len = vect.size();
     int a = 0;
+
     for (int i =0; i < len; ++i)
         a+= vect.at(i);
-
 
     if(a == sum) return true;
 
@@ -78,6 +82,5 @@ void printVect(vector <int> vect){
     {
         cout<<vect.at(i)<<"\t";
     }
-
     cout<<endl;
 }
